@@ -1,6 +1,6 @@
 package travelbot.demo.payloads;
 
-public record UserResponse(
+public record UserResponseDTO(
         Long id,
         String username,
         String email

@@ -1,25 +1,28 @@
 package travelbot.demo.entities;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     private String username;
 
-    @Column(nullable = false, length = 120)
+    @Column(nullable = false, length = 120, unique = true)
     private String email;
 
     @Column(nullable = false, length = 200)
     private String passwordHash;
-
 
     public User() {
     }
@@ -30,8 +33,6 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-
-    // Getters/Setters
     public Long getId() {
         return id;
     }
@@ -60,12 +61,25 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Non usi ruoli per ora → lista vuota
+        return List.of();
+    }
+
+    @Override
+    public String getPassword() {
+        return passwordHash;
+    }
+
+
     @Override
     public String toString() {
         return "User{" +
-                "email='" + email + '\'' +
+                "id=" + id +
                 ", username='" + username + '\'' +
-                ", id=" + id +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

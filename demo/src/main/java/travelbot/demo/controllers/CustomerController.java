@@ -33,7 +33,7 @@ public class CustomerController {
         return new CustomerResponse(
                 c.getId(), c.getPhone(), c.getName(),
                 c.getLeadValue() != null ? c.getLeadValue().name() : null,
-                c.getPreferencesJson(), c.getLastContactedAt(), c.getCreatedAt()
+                c.getPreferences(), c.getLastContactedAt(), c.getCreatedAt()
         );
     }
 
@@ -43,7 +43,7 @@ public class CustomerController {
         return new CustomerResponse(
                 c.getId(), c.getPhone(), c.getName(),
                 c.getLeadValue() != null ? c.getLeadValue().name() : null,
-                c.getPreferencesJson(), c.getLastContactedAt(), c.getCreatedAt()
+                c.getPreferences(), c.getLastContactedAt(), c.getCreatedAt()
         );
     }
 
@@ -59,7 +59,7 @@ public class CustomerController {
         return new CustomerResponse(
                 c.getId(), c.getPhone(), c.getName(),
                 c.getLeadValue() != null ? c.getLeadValue().name() : null,
-                c.getPreferencesJson(), c.getLastContactedAt(), c.getCreatedAt()
+                c.getPreferences(), c.getLastContactedAt(), c.getCreatedAt()
         );
     }
 }

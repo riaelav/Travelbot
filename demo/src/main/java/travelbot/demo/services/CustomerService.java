@@ -8,7 +8,6 @@ import travelbot.demo.exceptions.NotFoundException;
 import travelbot.demo.payloads.CustomerCreateRequest;
 import travelbot.demo.payloads.CustomerUpdateRequest;
 import travelbot.demo.repositories.CustomerRepository;
-import travelbot.demo.utils.JsonUtils;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -34,7 +33,7 @@ public class CustomerService {
         }
         Customer c = new Customer(req.phone(), req.name());
         if (req.leadValue() != null) c.setLeadValue(req.leadValue());
-        if (req.preferences() != null) c.setPreferencesJson(JsonUtils.write(req.preferences()));
+        if (req.preferences() != null) c.setPreferences(req.preferences());
         return customerRepository.save(c);
     }
 
@@ -42,7 +41,7 @@ public class CustomerService {
         Customer c = findById(id);
         if (req.name() != null) c.setName(req.name());
         if (req.leadValue() != null) c.setLeadValue(req.leadValue());
-        if (req.preferences() != null) c.setPreferencesJson(JsonUtils.write(req.preferences()));
+        if (req.preferences() != null) c.setPreferences(req.preferences());
         return customerRepository.save(c);
     }
 

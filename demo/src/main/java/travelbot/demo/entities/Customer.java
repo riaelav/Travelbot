@@ -2,9 +2,12 @@ package travelbot.demo.entities;
 
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import travelbot.demo.enums.LeadValue;
 
 import java.time.Instant;
+import java.util.Map;
 
 @Entity
 @Table(name = "customers")
@@ -24,8 +27,10 @@ public class Customer {
     @Column(name = "lead_value")
     private LeadValue leadValue;
 
-    @Column(name = "client_preferences", columnDefinition = "jsonb")
-    private String preferencesJson;
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "client_preferences", columnDefinition = "jsonb") //se salvo in json potrò fare delle query in futuro
+    private Map<String, Object> preferences;
+
 
     @Column(name = "last_contact")
     private Instant lastContactedAt;
@@ -76,12 +81,12 @@ public class Customer {
         this.leadValue = leadValue;
     }
 
-    public String getPreferencesJson() {
-        return preferencesJson;
+    public Map<String, Object> getPreferences() {
+        return preferences;
     }
 
-    public void setPreferencesJson(String preferencesJson) {
-        this.preferencesJson = preferencesJson;
+    public void setPreferences(Map<String, Object> preferences) {
+        this.preferences = preferences;
     }
 
     public Instant getLastContactedAt() {
@@ -96,15 +101,4 @@ public class Customer {
         return createdAt;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "createdAt=" + createdAt +
-                ", lastContactedAt=" + lastContactedAt +
-                ", preferencesJson='" + preferencesJson + '\'' +
-                ", leadValue=" + leadValue +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
-    }
 }

@@ -12,6 +12,8 @@ import travelbot.demo.payloads.BookingCreateRequest;
 import travelbot.demo.payloads.BookingUpdateStatusRequest;
 import travelbot.demo.repositories.BookingRepository;
 
+import java.util.List;
+
 @Service
 public class BookingService {
 
@@ -24,11 +26,7 @@ public class BookingService {
     @Autowired
     private ConversationService conversationService;
 
-    public Booking findById(Long id) {
-        return bookingRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Booking not found: " + id));
-    }
-
+    // CREATE
     public Booking create(BookingCreateRequest req) {
         Customer customer = customerService.findById(req.customerId());
         Conversation conversation = null;
@@ -47,12 +45,33 @@ public class BookingService {
         return bookingRepository.save(b);
     }
 
+    // 🔹 READ all
+    public List<Booking> findAll() {
+        return bookingRepository.findAll();
+    }
+
+    // READ by ID
+    public Booking findById(Long id) {
+        return bookingRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Booking not found with id: " + id));
+    }
+
+    //READ by Customer
+    public List<Booking> findByCustomer(Long customerId) {
+        return bookingRepository.findAll().stream()
+                .filter(b -> b.getCustomer().getId().equals(customerId))
+                .toList();
+    }
+
+    //UPDATE
+
     public Booking updateStatus(Long id, BookingUpdateStatusRequest req) {
         Booking b = findById(id);
-        b.setStatus(req.status());
+        b.setStatus(req.status()); // enum estratto dal DTO
         return bookingRepository.save(b);
     }
 
+    // COUNT by status (per statistiche/dashboard)
     public long countByStatus(BookingStatus status) {
         return bookingRepository.countByStatus(status);
     }

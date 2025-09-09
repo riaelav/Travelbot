@@ -55,7 +55,10 @@ public class JWTCheckerFilter extends OncePerRequestFilter {
     // Disabilitiamo questo filtro per determinati endpoints tipo /auth/login e /auth/register
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return new AntPathMatcher().match("/auth/**", request.getServletPath());
-
+        AntPathMatcher matcher = new AntPathMatcher();
+        return matcher.match("/auth/**", request.getServletPath())
+                || matcher.match("/ai/**", request.getServletPath())
+                || matcher.match("/twilio/inbound", request.getServletPath());
     }
+
 }

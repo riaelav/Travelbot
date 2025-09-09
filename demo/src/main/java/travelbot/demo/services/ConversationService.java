@@ -39,4 +39,10 @@ public class ConversationService {
         if (conv.getClosedAt() == null) conv.setClosedAt(Instant.now());
         return conversationRepository.save(conv);
     }
+
+    public Conversation findOrStartOpen(Long customerId) {
+        return conversationRepository.findTopByCustomerIdOrderByStartedAtDesc(customerId)
+                .filter(c -> c.getClosedAt() == null)
+                .orElseGet(() -> start(customerId));
+    }
 }

@@ -1,6 +1,7 @@
 package travelbot.demo.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,44 +18,80 @@ import travelbot.demo.services.ConversationService;
 import travelbot.demo.services.TwilioService;
 
 import java.time.Instant;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/twilio")
 public class TwilioWebhookController {
 
-    @Autowired
-    private CustomerRepository customerRepository;
-    @Autowired
-    private ConversationService conversationService;
-    @Autowired
-    private MessageRepository messageRepository;
-    @Autowired
-    private AiChatService aiChatService;
-    @Autowired
-    private TwilioService twilioService;
+    private final CustomerRepository customerRepository;
+    private final ConversationService conversationService;
+    private final MessageRepository messageRepository;
+    private final AiChatService aiChatService;
+    private final TwilioService twilioService;
 
-    @PostMapping(value = "/inbound", consumes = "application/x-www-form-urlencoded")
-    public void inbound(@RequestBody MultiValueMap<String, String> form) {
-        String from = form.getFirst("From");   // es: "whatsapp:+39XXXXXXXXXX"
-        String body = form.getFirst("Body");
-        if (from == null || body == null || body.isBlank()) return;
+    public TwilioWebhookController(
+            CustomerRepository customerRepository,
+            ConversationService conversationService,
+            MessageRepository messageRepository,
+            AiChatService aiChatService,
+            TwilioService twilioService
+    ) {
+        this.customerRepository = customerRepository;
+        this.conversationService = conversationService;
+        this.messageRepository = messageRepository;
+        this.aiChatService = aiChatService;
+        this.twilioService = twilioService;
+    }
 
-        String phone = from.replace("whatsapp:", "").trim(); // normalizza
+    @PostMapping(
+            value = "/inbound",
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+            produces = MediaType.APPLICATION_XML_VALUE
+    )
+    public ResponseEntity<String> inbound(@RequestBody MultiValueMap<String, String> form) {
+        final String from = form.getFirst("From");
+        final String body = form.getFirst("Body");
+        final String messageSid = form.getFirst("MessageSid");
+        if (from == null || body == null || body.isBlank()) {
 
-        Customer customer = customerRepository.findByPhone(phone)
-                .orElseGet(() -> customerRepository.save(new Customer(phone, null)));
+            return ResponseEntity.ok("<Response/>");
+        }
 
-        Conversation conv = conversationService.findOrStartOpen(customer.getId());
+        final String phone = from.replace("whatsapp:", "").trim();
 
-        // salva USER
-        messageRepository.save(new Message(conv, MessageRole.USER, body));
-        customer.setLastContactedAt(Instant.now());
-        customerRepository.save(customer);
 
-        // chiama OpenAI + salva ASSISTANT
-        String reply = aiChatService.reply(conv.getId(), body);
+        CompletableFuture.runAsync(() -> {
+            try {
 
-        // rispondi su WhatsApp
-        twilioService.sendWhatsApp(phone, reply);
+
+                Customer customer = customerRepository.findByPhone(phone)
+                        .orElseGet(() -> customerRepository.save(new Customer(phone, null)));
+
+                Conversation conv = conversationService.findOrStartOpen(customer.getId());
+
+                // salva USER
+                messageRepository.save(new Message(conv, MessageRole.USER, body));
+                customer.setLastContactedAt(Instant.now());
+                customerRepository.save(customer);
+
+                // chiama OpenAI + salva ASSISTANT
+                String reply = aiChatService.reply(conv.getId(), body);
+
+                // invia risposta su WhatsApp
+                twilioService.sendWhatsApp(phone, reply);
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+                try {
+                    twilioService.sendWhatsApp(phone, "Ops! Si è verificato un errore temporaneo. Riprova tra poco 🙏");
+                } catch (Exception ignored) {
+                }
+            }
+        });
+
+        // Risposta IMMEDIATA
+        return ResponseEntity.ok("<Response/>");
     }
 }

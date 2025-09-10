@@ -58,7 +58,7 @@ public class JWTCheckerFilter extends OncePerRequestFilter {
         AntPathMatcher matcher = new AntPathMatcher();
         return matcher.match("/auth/**", request.getServletPath())
                 || matcher.match("/ai/**", request.getServletPath())
-                || matcher.match("/twilio/inbound", request.getServletPath());
+                || matcher.match("/twilio/**", request.getServletPath());
     }
 
 }

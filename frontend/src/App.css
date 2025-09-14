@@ -1,0 +1,123 @@
+/* Base */
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(14, 16, 29); /* sfondo */
+  color: #c9d1d9; /* testo */
+  overflow-x: hidden;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 300;
+}
+
+/* Sidebar fissa (desktop) */
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 240px;
+  background: rgb(9, 15, 29);
+  border-right: 1px solid #30363d;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1000;
+}
+.sidebar .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  font-weight: 700;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.sidebar .muted {
+  color: #9aa4b2;
+  font-size: 0.88rem;
+}
+
+.nav-group {
+  margin-top: 8px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: #9aa4b2;
+}
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #c9d1d9;
+}
+.nav-item.active {
+  background: rgba(106, 227, 255, 0.12);
+  color: #c9d1d9;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+}
+
+/* Area contenuto */
+.content {
+  margin-left: 240px; /* deve combaciare con la larghezza sidebar */
+  min-height: 100vh;
+  padding: 24px;
+}
+
+/* Topbar solo mobile */
+.topbar {
+  display: none;
+}
+@media (max-width: 991px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: 0.25s ease;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .content {
+    margin-left: 0;
+    padding-top: 64px;
+  }
+  .topbar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: rgb(9, 15, 29);
+    border-bottom: 1px solid #30363d;
+    align-items: center;
+    gap: 12px;
+    padding: 0 12px;
+    z-index: 900;
+  }
+}
+
+/* Card stile “revolut” */
+.card.revolut {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid #30363d;
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+/* Pulsante accent */
+.btn-accent {
+  background: #a970ff; /* violet */
+  border: 0;
+  color: #0b0f1d;
+  font-weight: 600;
+}
+.btn-accent:hover {
+  filter: brightness(0.95);
+}

@@ -26,9 +26,8 @@ export default function Sidebar({ open = false }) {
           <span>Settings</span>
         </NavLink>
       </div>
-
       <div className="sidebar-footer">
-        <div className="muted">v1.0 • Minimal</div>
+        <small className="muted d-block">© {new Date().getFullYear()} Travelbot™</small>
       </div>
     </aside>
   );

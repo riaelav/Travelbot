@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { Routes, Route, Outlet, NavLink } from "react-router-dom";
+
 import Sidebar from "./components/Sidebar.jsx";
 import Home from "./components/Home.jsx";
 import Conversations from "./components/Conversations.jsx";
 import Analytics from "./components/Analytics.jsx";
 import Settings from "./components/Settings.jsx";
 import NotFound from "./components/NotFound.jsx";
+
+import RequireAuth from "./components/RequireAuth.jsx";
+import Login from "./components/Login.jsx";
+import Register from "./components/Register.jsx";
 
 function Layout() {
   const [open, setOpen] = useState(false);
@@ -31,12 +36,25 @@ function Layout() {
 export default function App() {
   return (
     <Routes>
-      <Route element={<Layout />}>
+      {/* Pubbliche */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      {/* Protette */}
+      <Route
+        element={
+          <RequireAuth>
+            <Layout />
+          </RequireAuth>
+        }
+      >
         <Route index element={<Home />} />
         <Route path="conversations" element={<Conversations />} />
         <Route path="analytics" element={<Analytics />} />
         <Route path="settings" element={<Settings />} />
       </Route>
+
+      {/* 404 */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

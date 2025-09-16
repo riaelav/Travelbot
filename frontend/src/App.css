@@ -121,3 +121,100 @@ body,
 .btn-accent:hover {
   filter: brightness(0.95);
 }
+
+/* Wrapper centrato */
+.auth-wrap {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* Card */
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid #30363d;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+/* Titolo + testo secondario */
+.auth-title {
+  margin: 0 0 6px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.auth-sub {
+  color: #9aa4b2;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+/* Form controls dark */
+.auth-card .form-label {
+  color: #c9d1d9;
+  font-weight: 500;
+}
+.auth-card .form-control {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+}
+.auth-card .form-control:focus {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #6ae3ff;
+  box-shadow: 0 0 0 0.2rem rgba(106, 227, 255, 0.15);
+  color: #e6eaf2;
+}
+.auth-card .form-text {
+  color: #9aa4b2;
+}
+
+/* Toggle password (icona occhio) */
+.auth-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
+  color: #9aa4b2;
+  padding: 4px;
+  cursor: pointer;
+}
+.auth-toggle:hover {
+  color: #c9d1d9;
+}
+
+/* Errori */
+.auth-error {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+}
+
+/* CTA/link sotto il form */
+.auth-meta {
+  color: #9aa4b2;
+  font-size: 0.9rem;
+}
+.auth-meta a {
+  color: #c9d1d9;
+  text-decoration: underline;
+}
+.auth-meta a:hover {
+  opacity: 0.9;
+}
+
+/* Bottone primario (usa la tua .btn-accent) */
+.btn-accent {
+  background: #a970ff;
+  border: 0;
+  color: #0b0f1d;
+  font-weight: 600;
+}
+.btn-accent:hover {
+  filter: brightness(0.95);
+}

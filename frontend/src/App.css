@@ -218,3 +218,146 @@ body,
 .btn-accent:hover {
   filter: brightness(0.95);
 }
+/* Dark Table Styling */
+.table-dark-custom {
+  background-color: transparent;
+  color: var(--text-primary);
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.table-dark-custom thead th {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border: none;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.75rem 1rem;
+}
+.table-dark-custom tbody td {
+  background-color: rgba(255, 255, 255, 0.02);
+  color: var(--text-primary);
+  border-collapse: collapse;
+  border: none;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.75rem 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+.table-dark-custom tbody tr:hover td {
+  background-color: var(--btn-border);
+} /* Buttons in table */
+.table-dark-custom td button {
+  white-space: nowrap;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.85rem;
+}
+/* Drawer laterale */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(2px);
+  z-index: 1040;
+}
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(520px, 100%);
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 1px solid #30363d;
+  padding: 16px;
+  z-index: 1050;
+  overflow: auto;
+}
+.chat-pane {
+  min-height: 50vh;
+}
+.bg-user {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+}
+.bg-assistant {
+  background: rgba(169, 112, 255, 0.12);
+  border: 1px solid rgb(34, 25, 51);
+  color: #c9d1d9;
+}
+
+/* testo bianco nella tabella */
+.table-dark-custom {
+  --text-primary: #fff; /* override variabile usata nei th/td */
+  color: #fff;
+}
+
+.table-dark-custom thead th,
+.table-dark-custom tbody td {
+  color: #fff !important;
+}
+
+/* bottoni/link nella tabella */
+.table-dark-custom .open-chat-btn,
+.table-dark-custom a {
+  color: #fff !important;
+}
+
+/* leggero boost al contrasto di fondo (opzionale) */
+.table-dark-custom thead th {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+.table-dark-custom tbody td {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* Bottoni "Apri chat" */
+.table-dark-custom .open-chat-btn.sidebar-btn {
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.8rem;
+  margin: 0;
+  border-radius: 16px;
+
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.table-dark-custom .open-chat-btn.sidebar-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.table-dark-custom .open-chat-btn.sidebar-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(169, 112, 255, 0.25);
+}
+
+.sidebar .nav-item,
+.sidebar .nav-item * {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.sidebar .nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  text-decoration: none !important;
+}
+
+.sidebar .nav-item.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+.sidebar .sidebar-btn {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+.sidebar .sidebar-btn:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}

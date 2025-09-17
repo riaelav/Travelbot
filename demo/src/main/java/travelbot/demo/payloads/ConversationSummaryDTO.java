@@ -1,4 +1,12 @@
 package travelbot.demo.payloads;
 
-public class ConversationSummaryDTO {
+import java.time.Instant;
+
+public record ConversationSummaryDTO(
+        Long id,
+        String customerPhone,
+        Instant startedAt,
+        Instant closedAt,
+        long messagesCount
+) {
 }

@@ -4,7 +4,7 @@ const API = import.meta.env.VITE_API_BASE || "";
 
 export const loadConversations = createAsyncThunk("conversations/load", async () => {
   const token = localStorage.getItem("tb_token");
-  const res = await fetch(`${API}/api/conversations`, {
+  const res = await fetch(`${API}/conversations`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   if (!res.ok) throw new Error((await res.text()) || "Fetch failed");

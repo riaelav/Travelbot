@@ -26,7 +26,7 @@ export const loginUser = createAsyncThunk("auth/login", async ({ email, password
   });
   if (!res.ok) throw new Error((await res.text()) || "Invalid credentials");
 
-  const data = await res.json(); // atteso: { accessToken, user? }
+  const data = await res.json();
   const token = data.accessToken || data.token;
   const user = data.user || null;
 

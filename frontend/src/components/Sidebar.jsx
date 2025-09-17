@@ -9,7 +9,7 @@ export default function Sidebar({ open = false }) {
 
   const onLogout = () => {
     dispatch(logout());
-    navigate("/login", { replace: true }); // redirect immediato
+    navigate("/login", { replace: true });
   };
 
   return (
@@ -44,9 +44,20 @@ export default function Sidebar({ open = false }) {
             <i className="bi bi-person"></i> {user.email || user.username}
           </div>
         )}
-        <button className="btn btn-outline-light btn-sm w-100" onClick={onLogout}>
-          <i className="bi bi-box-arrow-right"></i> Logout
-        </button>
+
+        <a
+          href="#"
+          className="nav-item active"
+          role="button"
+          onClick={(e) => {
+            e.preventDefault();
+            dispatch(logout());
+            navigate("/login", { replace: true });
+          }}
+        >
+          <i className="bi bi-box-arrow-right"></i>
+          <span>Logout</span>
+        </a>
       </div>
     </aside>
   );

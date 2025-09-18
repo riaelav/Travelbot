@@ -361,3 +361,83 @@ body,
 .sidebar .sidebar-btn:hover {
   background-color: rgba(255, 255, 255, 0.08);
 }
+
+/* Card grafico */
+.card.chart-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  color: var(--text-primary);
+}
+
+/* Header compatto con badge */
+.chart-card .chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+/* Area grafico fissa e responsive */
+.chart-card .chart-body {
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Etichetta centrale del donut */
+.donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.donut-center .value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.donut-center .hint {
+  color: #9aa4b2;
+  font-size: 0.85rem;
+}
+
+/* Card KPI */
+.card.kpi-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  color: var(--text-primary);
+}
+
+/* Badge priorità */
+.badge-pri {
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--btn-border);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.badge-pri.low {
+  background: rgba(100, 200, 120, 0.1);
+  border-color: rgba(100, 200, 120, 0.3);
+}
+.badge-pri.high {
+  background: rgba(255, 99, 99, 0.12);
+  border-color: rgba(255, 99, 99, 0.35);
+}
+.badge-pri.mid {
+  background: rgba(169, 112, 255, 0.12);
+  border-color: var(--btn-border);
+}
+
+.recharts-default-tooltip {
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem !important;
+}

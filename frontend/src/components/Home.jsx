@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadConversations } from "../redux/conversationsSlice";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import Conversations from "./Conversations.jsx"; // <-- aggiunto
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -24,9 +25,9 @@ export default function Home() {
   return (
     <div className="container-fluid p-0">
       <div className="row row-stretch g-3">
-        {/* Donut */}
-        <div className="col-12 col-lg-6">
-          <div className="card chart-card p-3">
+        {/* Colonna sinistra: Donut */}
+        <div className="col-12 col-lg-6 d-flex">
+          <div className="card chart-card p-3 h-100 w-100">
             <div className="chart-header">
               <h2 className="h6 m-0">Time saved</h2>
               <span className="badge-pri mid">{savedMinutes} min</span>
@@ -52,34 +53,39 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Priority + Funnel */}
-        <div className="col-12 col-lg-6">
-          <div className="card kpi-card p-3">
-            <div className="d-flex align-items-center mb-2">
-              <h2 className="h6 m-0">Priority</h2>
+        {/* Colonna destra: Priority + Funnel */}
+        <div className="col-12 col-lg-6 d-flex">
+          <div className="d-flex flex-column gap-3 w-100 h-100">
+            <div className="card kpi-card p-3 flex-fill">
+              <div className="d-flex align-items-center mb-2">
+                <h2 className="h6 m-0">Priority</h2>
+              </div>
+              <div className="d-flex gap-3 flex-nowrap align-items-center">
+                <span className="badge-pri high">1 conversation high</span>
+                <span className="badge-pri low">1 conversation low</span>
+              </div>
             </div>
-            <div className="d-flex gap-3">
-              <span className="badge-pri high">1 conversation high</span>
-              <span className="badge-pri low">1 conversation low</span>
-            </div>
-            <div className="text-secondary small mt-2">Placeholder</div>
-          </div>
 
-          <div className="card kpi-card p-3 mt-3">
-            <div className="d-flex align-items-center mb-2">
-              <h2 className="h6 m-0">Funnel</h2>
+            <div className="card kpi-card p-3 flex-fill">
+              <div className="d-flex align-items-center mb-2">
+                <h2 className="h6 m-0">Funnel</h2>
+              </div>
+              <div className="d-flex gap-3 flex-nowrap align-items-center">
+                <span className="badge-pri mid">
+                  <i className="bi bi-check2-circle me-1" /> Conversions 2
+                </span>
+                <span className="badge-pri high">
+                  <i className="bi bi-cart-x me-1" /> Abandoned cart 1
+                </span>
+              </div>
             </div>
-            <div className="d-flex gap-3">
-              <span className="badge-pri mid">
-                <i className="bi bi-check2-circle me-1" /> Conversions 2
-              </span>
-              <span className="badge-pri high">
-                <i className="bi bi-cart-x me-1" /> Abandoned cart 1
-              </span>
-            </div>
-            <div className="text-secondary small mt-2">Placeholder</div>
           </div>
         </div>
+      </div>
+
+      {/* Sezione conversazioni */}
+      <div className="mt-4">
+        <Conversations />
       </div>
     </div>
   );

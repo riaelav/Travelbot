@@ -53,14 +53,14 @@ export default function Conversations() {
   const rows = useMemo(() => items, [items]);
 
   return (
-    <div className="card revolut p-3">
+    <div className="card kpi-card p-3">
       <div className="d-flex align-items-center mb-3">
         <div className="ms-auto text-secondary small">{status === "loading" ? "Aggiornamento…" : `${rows.length} risultati`}</div>
       </div>
 
       {status === "failed" && <div className="text-danger mb-2">{String(error)}</div>}
 
-      <div className="table-responsive">
+      <div className="table-responsive table-shell">
         <table className="table table-dark-custom w-100">
           <thead>
             <tr>

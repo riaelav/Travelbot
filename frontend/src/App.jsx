@@ -4,7 +4,7 @@ import { Routes, Route, Outlet, NavLink } from "react-router-dom";
 import Sidebar from "./components/Sidebar.jsx";
 import Home from "./components/Home.jsx";
 import Conversations from "./components/Conversations.jsx";
-import Analytics from "./components/Analytics.jsx";
+
 import Settings from "./components/Settings.jsx";
 import NotFound from "./components/NotFound.jsx";
 
@@ -50,7 +50,7 @@ export default function App() {
       >
         <Route index element={<Home />} />
         <Route path="conversations" element={<Conversations />} />
-        <Route path="analytics" element={<Analytics />} />
+
         <Route path="settings" element={<Settings />} />
       </Route>
 

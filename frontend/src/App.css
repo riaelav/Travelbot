@@ -488,3 +488,92 @@ body,
   border-collapse: separate !important;
   border-spacing: 0 10px !important;
 }
+
+.settings .form-label {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.settings .form-control,
+.settings .form-select,
+.settings textarea {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 12px;
+}
+
+.settings .form-control::placeholder,
+.settings textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.settings .form-control:focus,
+.settings .form-select:focus,
+.settings textarea:focus {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--violet);
+  box-shadow: 0 0 0 2px rgba(169, 112, 255, 0.25);
+  outline: none;
+}
+
+.settings .form-control:disabled,
+.settings .form-select:disabled,
+.settings textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.settings .btn.btn-accent {
+  border: 1px solid var(--btn-border);
+  background: rgba(169, 112, 255, 0.12);
+  color: var(--text-primary);
+  border-radius: 12px;
+}
+.settings .btn.btn-accent:hover {
+  background: rgba(169, 112, 255, 0.18);
+}
+
+.settings input:-webkit-autofill,
+.settings input:-webkit-autofill:hover,
+.settings input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text-primary);
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.settings .card.kpi-card,
+.settings .card.chart-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--btn-border);
+}
+
+.settings .form-control,
+.settings .form-select,
+.settings textarea {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--btn-border) !important;
+  border-radius: 12px;
+}
+
+.settings .form-control::placeholder,
+.settings textarea::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.settings .form-control:focus,
+.settings .form-select:focus,
+.settings textarea:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--violet);
+  box-shadow: 0 0 0 2px rgba(169, 112, 255, 0.25);
+  outline: none;
+}
+
+.settings .card {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 16px;
+}

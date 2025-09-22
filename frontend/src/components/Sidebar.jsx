@@ -28,10 +28,7 @@ export default function Sidebar({ open = false }) {
           <i className="bi bi-chat-dots"></i>
           <span>Conversations</span>
         </NavLink>
-        <NavLink to="/analytics" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>
-          <i className="bi bi-graph-up"></i>
-          <span>Analytics</span>
-        </NavLink>
+
         <NavLink to="/settings" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>
           <i className="bi bi-gear"></i>
           <span>Settings</span>

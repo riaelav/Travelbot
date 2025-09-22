@@ -12,8 +12,6 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
-  const [showPwd, setShowPwd] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
   const [localError, setLocalError] = useState(null);
 
   const onSubmit = async (e) => {
@@ -54,28 +52,22 @@ export default function Register() {
             <input className="form-control" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="you@example.com" />
           </div>
 
-          <div className="mb-3 position-relative">
+          <div className="mb-3">
             <label className="form-label">Password</label>
             <input
               className="form-control"
-              type={showPwd ? "text" : "password"}
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={8}
               placeholder="At least 8 characters"
             />
-            <button type="button" className="auth-toggle" onClick={() => setShowPwd((s) => !s)}>
-              <i className={`bi ${showPwd ? "bi-eye-slash" : "bi-eye"}`}></i>
-            </button>
           </div>
 
-          <div className="mb-2 position-relative">
+          <div className="mb-2">
             <label className="form-label">Confirm password</label>
-            <input className="form-control" type={showConfirm ? "text" : "password"} value={confirm} onChange={(e) => setConfirm(e.target.value)} required />
-            <button type="button" className="auth-toggle" onClick={() => setShowConfirm((s) => !s)}>
-              <i className={`bi ${showConfirm ? "bi-eye-slash" : "bi-eye"}`}></i>
-            </button>
+            <input className="form-control" type="password" value={confirm} onChange={(e) => setConfirm(e.target.value)} required />
           </div>
 
           {(localError || error) && <div className="auth-error mb-2">{localError || String(error)}</div>}

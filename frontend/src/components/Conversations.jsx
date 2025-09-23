@@ -22,6 +22,15 @@ export default function Conversations() {
   const phoneOf = (c) => c?.customerPhone || c?.phone || c?.customer?.phone || "—";
   const countOf = (c) => c?.messagesCount ?? c?.messageCount ?? c?.stats?.messages ?? 0;
 
+  // NEW: helper per lead/badge
+  const leadOf = (c) => c?.leadValue || c?.lead || c?.priority || "MID";
+  const leadBadge = (vRaw) => {
+    const v = String(vRaw || "MID").toUpperCase();
+    const cls = v === "HIGH" ? "high" : v === "LOW" ? "low" : "mid";
+    const label = v[0] + v.slice(1).toLowerCase(); // High/Mid/Low
+    return <span className={`badge-pri ${cls}`}>{label}</span>;
+  };
+
   const openDrawer = async (conv) => {
     setActiveConv(conv);
     setDrawerOpen(true);
@@ -55,6 +64,7 @@ export default function Conversations() {
   return (
     <div className="card kpi-card p-3">
       <div className="d-flex align-items-center mb-3">
+        <h2 className="h5 m-0">Conversations</h2>
         <div className="ms-auto text-secondary small">{status === "loading" ? "Aggiornamento…" : `${rows.length} risultati`}</div>
       </div>
 
@@ -65,31 +75,34 @@ export default function Conversations() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Client</th>
+              <th>Cliente</th>
               <th>Started at</th>
               <th>Closed at</th>
-              <th>Messages</th>
-              <th></th>
+              <th># Msg</th>
+              <th>Lead</th> {/* NEW */}
+              <th>Azione</th>
             </tr>
           </thead>
           <tbody>
             {rows.map((c) => (
               <tr key={c.id} className={selectedId === c.id ? "active-row" : ""}>
-                <td>{c.id}</td>
-                <td>{phoneOf(c)}</td>
-                <td>{fmt(c.startedAt || c.createdAt)}</td>
-                <td>{fmt(c.closedAt)}</td>
-                <td>{countOf(c)}</td>
-                <td>
+                <td data-label="ID">{c.id}</td>
+                <td data-label="Cliente">{phoneOf(c)}</td>
+                <td data-label="Started at">{fmt(c.startedAt || c.createdAt)}</td>
+                <td data-label="Closed at">{fmt(c.closedAt)}</td>
+                <td data-label="# Msg">{countOf(c)}</td>
+                <td data-label="Lead">{leadBadge(leadOf(c))}</td> {/* NEW */}
+                <td data-label="Azione">
                   <button className="btn-reset sidebar-btn open-chat-btn" onClick={() => openDrawer(c)}>
-                    Open chat
+                    <i className="bi bi-chat-dots me-1" />
+                    Apri chat
                   </button>
                 </td>
               </tr>
             ))}
             {rows.length === 0 && status === "succeeded" && (
               <tr>
-                <td colSpan={6} className="text-secondary">
+                <td colSpan={7} className="text-secondary">
                   Nessuna conversazione
                 </td>
               </tr>
@@ -111,7 +124,8 @@ export default function Conversations() {
               </button>
             </div>
             <div className="small text-secondary mb-3">
-              Started: {fmt(activeConv?.startedAt || activeConv?.createdAt)} • &nbsp;Closed: {fmt(activeConv?.closedAt)} • &nbsp;Msg: {countOf(activeConv)}
+              Started: {fmt(activeConv?.startedAt || activeConv?.createdAt)} • &nbsp;Closed: {fmt(activeConv?.closedAt)} • &nbsp;Msg: {countOf(activeConv)} •
+              &nbsp;Lead: {leadOf(activeConv)}
             </div>
 
             <div className="chat-pane">

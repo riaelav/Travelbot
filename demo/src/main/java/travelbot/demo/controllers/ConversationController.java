@@ -44,6 +44,7 @@ public class ConversationController {
         );
     }
 
+    
     @GetMapping
     public List<ConversationSummaryDTO> list() {
         return conversationRepository.findAllByOrderByStartedAtDesc()
@@ -53,12 +54,12 @@ public class ConversationController {
                         c.getCustomer() != null ? c.getCustomer().getPhone() : null,
                         c.getStartedAt(),
                         c.getClosedAt(),
-                        messageRepository.countByConversationId(c.getId())
+                        messageRepository.countByConversationId(c.getId()),
+                        c.getLeadValue() // enum LeadValue
                 ))
                 .toList();
     }
 
-    // === MESSAGGI DI UNA CONVERSAZIONE (usa il tuo MessageResponse) ===
     @GetMapping("/{id}/messages")
     public List<MessageResponse> messages(@PathVariable Long id) {
         return messageRepository.findAllByConversationIdOrderByCreatedAtAsc(id)
@@ -72,6 +73,4 @@ public class ConversationController {
                 ))
                 .toList();
     }
-
-
 }

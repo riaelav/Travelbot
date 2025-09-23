@@ -1,6 +1,7 @@
 package travelbot.demo.entities;
 
 import jakarta.persistence.*;
+import travelbot.demo.enums.LeadValue;
 
 import java.time.Instant;
 
@@ -20,6 +21,9 @@ public class Conversation {
     private Instant startedAt;
     @Column(name = "closed_at")
     private Instant closedAt;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private LeadValue leadValue = LeadValue.LOW;
 
     public Conversation() {
     }
@@ -56,6 +60,14 @@ public class Conversation {
 
     public void setClosedAt(Instant closedAt) {
         this.closedAt = closedAt;
+    }
+
+    public LeadValue getLeadValue() {
+        return leadValue;
+    }
+
+    public void setLeadValue(LeadValue leadValue) {
+        this.leadValue = leadValue;
     }
 
     @Override

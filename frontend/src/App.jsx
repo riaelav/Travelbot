@@ -16,7 +16,9 @@ function Layout() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Sidebar open={open} />
+      {open && <div className="sidebar-backdrop" onClick={() => setOpen(false)} />}
+
+      <Sidebar open={open} onNavigate={() => setOpen(false)} />
       <div className="topbar d-lg-none">
         <button className="btn btn-outline-light btn-sm" onClick={() => setOpen((x) => !x)}>
           <i className="bi bi-list"></i>

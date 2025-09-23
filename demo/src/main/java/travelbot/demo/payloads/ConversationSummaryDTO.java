@@ -1,5 +1,7 @@
 package travelbot.demo.payloads;
 
+import travelbot.demo.enums.LeadValue;
+
 import java.time.Instant;
 
 public record ConversationSummaryDTO(
@@ -7,6 +9,7 @@ public record ConversationSummaryDTO(
         String customerPhone,
         Instant startedAt,
         Instant closedAt,
-        long messagesCount
+        long messagesCount,
+        LeadValue leadValue
 ) {
 }

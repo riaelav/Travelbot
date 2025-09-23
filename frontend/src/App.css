@@ -1,4 +1,4 @@
-/* Base */
+/* ===== Base ===== */
 html,
 body,
 #root {
@@ -6,19 +6,19 @@ body,
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: rgb(14, 16, 29);
+  background: #0e101d;
   color: #c9d1d9;
   overflow-x: hidden;
-  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 300;
 }
 
-/* Sidebar fissa*/
+/* ===== Sidebar ===== */
 .sidebar {
   position: fixed;
   inset: 0 auto 0 0;
   width: 240px;
-  background: rgb(9, 15, 29);
+  background: #090f1d;
   border-right: 1px solid #30363d;
   padding: 16px 12px;
   display: flex;
@@ -39,7 +39,6 @@ body,
   color: #9aa4b2;
   font-size: 0.88rem;
 }
-
 .nav-group {
   margin-top: 8px;
 }
@@ -49,29 +48,37 @@ body,
   gap: 10px;
   padding: 10px 12px;
   border-radius: 12px;
-  color: #9aa4b2;
+  color: #fff;
+  text-decoration: none;
 }
 .nav-item:hover {
-  background: rgba(255, 255, 255, 0.04);
-  color: #c9d1d9;
+  background: rgba(255, 255, 255, 0.08);
 }
 .nav-item.active {
-  background: rgba(106, 227, 255, 0.12);
-  color: #c9d1d9;
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
 }
-
 .sidebar-footer {
   margin-top: auto;
 }
 
-/* Area contenuto */
+/* link/btn  */
+.sidebar .nav-item,
+.sidebar .nav-item *,
+.sidebar .sidebar-btn {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+.sidebar .sidebar-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ===== Content / Topbar ===== */
 .content {
   margin-left: 240px;
   min-height: 100vh;
   padding: 24px;
 }
-
-/* Topbar solo mobile */
 .topbar {
   display: none;
 }
@@ -94,7 +101,7 @@ body,
     left: 0;
     right: 0;
     height: 56px;
-    background: rgb(9, 15, 29);
+    background: #090f1d;
     border-bottom: 1px solid #30363d;
     align-items: center;
     gap: 12px;
@@ -103,15 +110,18 @@ body,
   }
 }
 
-/* Card */
-.card.revolut {
+/* ===== Cards ===== */
+.card.revolut,
+.card.chart-card,
+.card.kpi-card {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid #30363d;
   border-radius: 16px;
+  color: #c9d1d9;
   box-shadow: none;
 }
 
-/* Pulsante accent */
+/* ===== Buttons ===== */
 .btn-accent {
   background: #a970ff;
   border: 0;
@@ -122,7 +132,7 @@ body,
   filter: brightness(0.95);
 }
 
-/* Wrapper centrato */
+/* ===== Auth ===== */
 .auth-wrap {
   min-height: 70vh;
   display: flex;
@@ -130,8 +140,6 @@ body,
   justify-content: center;
   padding: 16px;
 }
-
-/* Card */
 .auth-card {
   width: 100%;
   max-width: 440px;
@@ -140,8 +148,6 @@ body,
   border-radius: 16px;
   padding: 24px;
 }
-
-/* Titolo + testo secondario */
 .auth-title {
   margin: 0 0 6px 0;
   font-size: 1.25rem;
@@ -152,8 +158,6 @@ body,
   font-size: 0.95rem;
   margin-bottom: 16px;
 }
-
-/* Form controls dark */
 .auth-card .form-label {
   color: #c9d1d9;
   font-weight: 500;
@@ -169,33 +173,10 @@ body,
   box-shadow: 0 0 0 0.2rem rgba(106, 227, 255, 0.15);
   color: #e6eaf2;
 }
-.auth-card .form-text {
-  color: #9aa4b2;
-}
-
-/* Toggle password (icona occhio) */
-.auth-toggle {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: 0;
-  color: #9aa4b2;
-  padding: 4px;
-  cursor: pointer;
-}
-.auth-toggle:hover {
-  color: #c9d1d9;
-}
-
-/* Errori */
 .auth-error {
   color: #ff6b6b;
   font-size: 0.9rem;
 }
-
-/* CTA/link sotto il form */
 .auth-meta {
   color: #9aa4b2;
   font-size: 0.9rem;
@@ -208,53 +189,85 @@ body,
   opacity: 0.9;
 }
 
-/* Bottone primario (usa la tua .btn-accent) */
-.btn-accent {
-  background: #a970ff;
-  border: 0;
-  color: #0b0f1d;
-  font-weight: 600;
+/* ===== Table (dark, pill rows) ===== */
+.table-shell {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid #30363d;
+  border-radius: 16px;
+  padding: 8px;
+  overflow: hidden;
 }
-.btn-accent:hover {
-  filter: brightness(0.95);
-}
-/* Dark Table Styling */
 .table-dark-custom {
-  background-color: transparent;
-  color: var(--text-primary);
-  border-collapse: separate;
-  border-spacing: 0 8px;
+  --text-primary: #fff;
+  color: #fff;
+  background: transparent;
+  border-collapse: separate !important;
+  border-spacing: 0 10px !important;
   border: none;
   border-radius: 12px;
   overflow: hidden;
 }
 .table-dark-custom thead th {
-  background-color: rgba(255, 255, 255, 0.05);
-  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff !important;
   border: none;
   text-align: center;
   vertical-align: middle;
   padding: 0.75rem 1rem;
+  background-clip: padding-box;
+}
+.table-dark-custom thead tr:first-child th:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.table-dark-custom thead tr:first-child th:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 .table-dark-custom tbody td {
-  background-color: rgba(255, 255, 255, 0.02);
-  color: var(--text-primary);
-  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff !important;
   border: none;
   text-align: center;
   vertical-align: middle;
   padding: 0.75rem 1rem;
   transition: background-color 0.2s ease-in-out;
 }
+.table-dark-custom tbody tr td:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.table-dark-custom tbody tr td:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
 .table-dark-custom tbody tr:hover td {
-  background-color: var(--btn-border);
-} /* Buttons in table */
+  background: rgba(255, 255, 255, 0.08);
+}
 .table-dark-custom td button {
   white-space: nowrap;
   padding: 0.3rem 0.7rem;
   font-size: 0.85rem;
 }
-/* Drawer laterale */
+/* Apri chat */
+.table-dark-custom .open-chat-btn.sidebar-btn {
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.8rem;
+  margin: 0;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff !important;
+}
+.table-dark-custom .open-chat-btn.sidebar-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== Drawer chat ===== */
 .drawer-backdrop {
   position: fixed;
   inset: 0;
@@ -288,105 +301,19 @@ body,
   color: #c9d1d9;
 }
 
-/* testo bianco nella tabella */
-.table-dark-custom {
-  --text-primary: #fff; /* override variabile usata nei th/td */
-  color: #fff;
-}
-
-.table-dark-custom thead th,
-.table-dark-custom tbody td {
-  color: #fff !important;
-}
-
-/* bottoni/link nella tabella */
-.table-dark-custom .open-chat-btn,
-.table-dark-custom a {
-  color: #fff !important;
-}
-
-/* leggero boost al contrasto di fondo (opzionale) */
-.table-dark-custom thead th {
-  background-color: rgba(255, 255, 255, 0.08);
-}
-.table-dark-custom tbody td {
-  background-color: rgba(255, 255, 255, 0.04);
-}
-
-/* Bottoni "Apri chat" */
-.table-dark-custom .open-chat-btn.sidebar-btn {
-  width: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.35rem 0.8rem;
-  margin: 0;
-  border-radius: 16px;
-
-  background-color: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-primary);
-}
-
-.table-dark-custom .open-chat-btn.sidebar-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-.table-dark-custom .open-chat-btn.sidebar-btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(169, 112, 255, 0.25);
-}
-
-.sidebar .nav-item,
-.sidebar .nav-item * {
-  color: #fff !important;
-  text-decoration: none !important;
-}
-
-.sidebar .nav-item:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-  text-decoration: none !important;
-}
-
-.sidebar .nav-item.active {
-  background-color: rgba(255, 255, 255, 0.1);
-  font-weight: 600;
-}
-
-.sidebar .sidebar-btn {
-  color: #fff !important;
-  text-decoration: none !important;
-}
-.sidebar .sidebar-btn:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
-/* Card grafico */
-.card.chart-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  color: var(--text-primary);
-}
-
-/* Header compatto con badge */
+/* ===== Charts / KPI ===== */
 .chart-card .chart-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.35rem;
 }
-
-/* Area grafico fissa e responsive */
 .chart-card .chart-body {
   min-height: 260px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-/* Etichetta centrale del donut */
 .donut-center {
   position: absolute;
   top: 50%;
@@ -403,16 +330,6 @@ body,
   color: #9aa4b2;
   font-size: 0.85rem;
 }
-
-/* Card KPI */
-.card.kpi-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  color: var(--text-primary);
-}
-
-/* Badge priorità */
 .badge-pri {
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
@@ -420,6 +337,7 @@ body,
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 .badge-pri.low {
   background: rgba(100, 200, 120, 0.1);
@@ -433,147 +351,138 @@ body,
   background: rgba(169, 112, 255, 0.12);
   border-color: var(--btn-border);
 }
-
 .recharts-default-tooltip {
   background: rgba(0, 0, 0, 0.6) !important;
-  border: 1px solid var(--border-color) !important;
-  color: var(--text-primary) !important;
+  border: 1px solid #30363d !important;
+  color: #c9d1d9 !important;
   border-radius: 8px;
   padding: 0.35rem 0.5rem !important;
 }
 
-.badge-pri {
-  white-space: nowrap;
+/* ===== Settings ===== */
+.settings .card {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid #30363d !important;
+  border-radius: 16px;
 }
-
-.table-dark-custom {
-  border-collapse: separate !important;
-  border-spacing: 0 10px !important;
-}
-
-.table-dark-custom thead th:first-child {
-  border-top-left-radius: 12px;
-}
-.table-dark-custom thead th:last-child {
-  border-top-right-radius: 12px;
-}
-
-.table-dark-custom tbody tr td:first-child {
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-}
-.table-dark-custom tbody tr td:last-child {
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
-}
-
-.table-dark-custom tbody tr:hover td {
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
-.table-dark-custom thead tr:first-child th:first-child {
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-}
-.table-dark-custom thead tr:first-child th:last-child {
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
-}
-
-.table-dark-custom thead th {
-  background-clip: padding-box;
-}
-
-.table-dark-custom {
-  border-collapse: separate !important;
-  border-spacing: 0 10px !important;
-}
-
 .settings .form-label {
-  color: var(--text-primary);
+  color: #c9d1d9;
   font-weight: 500;
 }
 
 .settings .form-control,
 .settings .form-select,
 .settings textarea {
-  background: transparent !important;
-  color: var(--text-primary) !important;
-  border: 1px solid var(--border-color) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #c9d1d9 !important;
+  border: 1px solid var(--btn-border) !important;
   border-radius: 12px;
 }
-
 .settings .form-control::placeholder,
 .settings textarea::placeholder {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.55);
 }
-
 .settings .form-control:focus,
 .settings .form-select:focus,
 .settings textarea:focus {
-  background: transparent;
-  color: var(--text-primary);
-  border-color: var(--violet);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #a970ff;
   box-shadow: 0 0 0 2px rgba(169, 112, 255, 0.25);
   outline: none;
 }
-
-.settings .form-control:disabled,
-.settings .form-select:disabled,
-.settings textarea:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
 .settings .btn.btn-accent {
   border: 1px solid var(--btn-border);
   background: rgba(169, 112, 255, 0.12);
-  color: var(--text-primary);
+  color: #c9d1d9;
   border-radius: 12px;
 }
 .settings .btn.btn-accent:hover {
   background: rgba(169, 112, 255, 0.18);
 }
-
+/* fix autofill */
 .settings input:-webkit-autofill,
 .settings input:-webkit-autofill:hover,
 .settings input:-webkit-autofill:focus {
-  -webkit-text-fill-color: var(--text-primary);
-  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  -webkit-text-fill-color: #c9d1d9;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset;
   transition: background-color 9999s ease-in-out 0s;
 }
 
-.settings .card.kpi-card,
-.settings .card.chart-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid var(--btn-border);
+/* Drawer*/
+.drawer {
+  background: rgba(9, 15, 29, 0.9) !important;
+  border-left: 1px solid #30363d;
 }
 
-.settings .form-control,
-.settings .form-select,
-.settings textarea {
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: var(--text-primary) !important;
-  border: 1px solid var(--btn-border) !important;
-  border-radius: 12px;
+.drawer-backdrop {
+  background: rgba(0, 0, 0, 0.45) !important;
 }
 
-.settings .form-control::placeholder,
-.settings textarea::placeholder {
-  color: rgba(255, 255, 255, 0.55);
+.drawer .bg-user {
+  background: rgba(255, 255, 255, 0.06);
+}
+.drawer .bg-assistant {
+  background: rgba(169, 112, 255, 0.16);
 }
 
-.settings .form-control:focus,
-.settings .form-select:focus,
-.settings textarea:focus {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: var(--violet);
-  box-shadow: 0 0 0 2px rgba(169, 112, 255, 0.25);
-  outline: none;
+/* Sotto 425px */
+@media (max-width: 425px) {
+  .badge-row {
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+  }
+  .badge-row .badge-pri {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
 }
 
-.settings .card {
-  background: rgba(255, 255, 255, 0.02) !important;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 16px;
+/* ===== Table===== */
+@media (max-width: 576px) {
+  .table-shell {
+    padding: 0;
+    border-radius: 12px;
+  }
+  .table-dark-custom {
+    border-spacing: 0 !important;
+  }
+  .table-dark-custom thead {
+    display: none;
+  }
+
+  .table-dark-custom tbody {
+    display: block;
+  }
+  .table-dark-custom tbody tr {
+    display: block;
+    margin: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid #30363d;
+    border-radius: 12px;
+  }
+
+  .table-dark-custom tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .table-dark-custom tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #9aa4b2;
+    margin-right: 12px;
+  }
+
+  /* bottone azione */
+  .table-dark-custom .open-chat-btn.sidebar-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.25rem;
+  }
 }

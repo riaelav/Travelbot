@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadConversations } from "../redux/conversationsSlice";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-import Conversations from "./Conversations.jsx"; // <-- aggiunto
+import Conversations from "./Conversations.jsx";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -22,6 +22,16 @@ export default function Home() {
   const savedHours = Math.floor(savedMinutes / 60);
   const savedRemMin = savedMinutes % 60;
 
+  // conteggio dinamico LOW/MID/HIGH
+  const counts = items.reduce(
+    (acc, c) => {
+      const v = String(c?.leadValue || c?.lead || c?.priority || "").toUpperCase();
+      if (v === "HIGH") acc.HIGH += 1;
+      if (v === "LOW") acc.LOW += 1;
+      return acc;
+    },
+    { LOW: 0, HIGH: 0 }
+  );
   return (
     <div className="container-fluid p-0">
       <div className="row row-stretch g-3">
@@ -60,17 +70,18 @@ export default function Home() {
               <div className="d-flex align-items-center mb-2">
                 <h2 className="h6 m-0">Priority</h2>
               </div>
-              <div className="d-flex gap-3 flex-nowrap align-items-center">
-                <span className="badge-pri high">1 conversation high</span>
-                <span className="badge-pri low">1 conversation low</span>
+              <div className="d-flex gap-3 flex-nowrap align-items-center badge-row">
+                <span className="badge-pri high">{counts.HIGH} conversations high</span>
+                <span className="badge-pri low">{counts.LOW} conversations low</span>
               </div>
             </div>
 
+            {/* Funnel */}
             <div className="card kpi-card p-3 flex-fill">
               <div className="d-flex align-items-center mb-2">
                 <h2 className="h6 m-0">Funnel</h2>
               </div>
-              <div className="d-flex gap-3 flex-nowrap align-items-center">
+              <div className="d-flex gap-3 flex-nowrap align-items-center badge-row">
                 <span className="badge-pri mid">
                   <i className="bi bi-check2-circle me-1" /> Conversions 2
                 </span>
